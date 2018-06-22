@@ -1,0 +1,21 @@
+.main {
+    background-color: #ccc;
+}
+#map {
+    height: 30rem;
+    width: 100%;
+    border: 1px solid #333;
+    background-color: #fff;
+}
+.title p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+body {
+  margin-top: 55px;
+}
+@media (max-width: 575.98px) {
+    #map {
+        height: 28rem;
+    }
+}
