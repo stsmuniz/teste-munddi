@@ -44,11 +44,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script>
         function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(initMap);
-            } else { 
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
+            var position = null
+            $.getJSON('https://ipinfo.io/geo', function(response) { 
+                var loc = response.loc.split(',');
+                coords = {
+                    latitude: loc[0],
+                    longitude: loc[1]
+                };
+            }).done(function(data) {
+                var loc = data.loc.split(',');
+                position = {
+                    'coords': {
+                        latitude: parseFloat(loc[0]),
+                        longitude: parseFloat(loc[1])
+                    }
+                }
+                initMap(position)
+            });
         }
 
         function initMap(position) {
