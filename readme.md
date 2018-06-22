@@ -1,60 +1,38 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+TESTE MUNDDI
+============
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+O objetivo principal é fechar o ciclo de programação desde a infra até o frontend publicado. Separei em cada área a explicação necessária, além de adicionar um "extra" em cada uma, que contará pontos extras caso entregue (mas não é requerido).
 
-## About Laravel
+Segue abaixo o briefing do desafio:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Descrição
+Um de nossos principais ambientes que são acessados são os mapas de publicação de pontos de venda (Exemplos: Bio2, Snackout, Latinex, etc). Milhões de usuários acessam mensalmente esses mapas para encontrar os produtos que procuram mais próximos fisicamente a eles. 
+O desafio é fazer um mapa desse 100% responsivo, leve e que detecte automaticamente a localização do usuário ao acessá-lo e que exiba as informações de cada loja ao clicar em seu pin. Para isso, você vai mostrar suas habilidades em cada categoria abaixo:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+## Infraestrutura
 
-## Learning Laravel
+Já temos um servidor online no IP 18.228.4.176. Ele é uma máquina isolada na AWS com instalação base do Ubuntu 16 e está inteiramente disponível para você. Para acessá-la via SSH, utilize a chave privada em anexo com o usuário ubuntu. Instale e configure apache, mysql e php isoladamente nesta máquina. Ela deve ser acessível publicamente para exibição de seu teste.
+Faça essa parte de infraestrutura por último. A programação é a que mais vale pontos neste desafio!
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+** Extra: instalar certificado SSL usando Let's Encrypt.
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Banco de dados
 
-## Laravel Sponsors
+Utilizando MySQL, crie uma tabela para armazenar as lojas. Esta tabela deve armazenar os seguintes campos: nome da loja, endereço completo e coordenadas (latitude + longitude). Segue em anexo uma listagem com 250 lojas do nosso bairro (Vila Leopoldina).
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+** Extra: Utilizar armazenamento com datatype POINT do MySQL.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
+## Backend
 
-## Contributing
+Criar um serviço RESTful de consulta de lojas, que pode ser um PHP simples parametrizado mas necessariamente OO. Ele deve responder com um JSON array de lojas baseado nos parâmetros de entrada que são as pontas da área visível do mapa, ou seja, não devemos retornar lojas que não serão exibidas na área visível.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+** Extra: utilizar framework Laravel para padronizar a resposta do serviço criado.
 
-## Security Vulnerabilities
+## Frontend
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Deverá ser 100% responsivo com uso de Bootstrap. Utilizar javascript com JQuery. Detectar localização inicial do usuário via HTML5. Plotar os pins no mapa e exibir informações em infowindow vindas do serviço.
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+** Extra1: criar link para navegação a partir da localização do usuário até a loja para ser aberto no google maps.
+** Extra2: criar um espaço mais interessante para exibir as informações da loja, que não dependa de uma infowindow.
